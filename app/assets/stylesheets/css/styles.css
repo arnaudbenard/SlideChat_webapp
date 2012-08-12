@@ -8,6 +8,7 @@
 	a{
 		text-decoration: none;
 	}
+
 	input{
 		border-size: 0px;
 		border-style: none;
@@ -156,15 +157,18 @@
  	.hor{
  			width:360px;
  			border-top: 1px solid #d8d8d8;
-
-
  		}
- 		 	.hor2{
- 			width:100%;
- 			border-top: 1px solid #d8d8d8;
-
-
+ 	.hor2{
+ 		width:100%;
+ 		border-top: 1px solid #d8d8d8;
  		}
+ 	.footer_links{
+ 		font-family: Georgia;
+		font-size: 10px;
+		color: #8d8d8d;
+		text-align: center;
+
+ 	}
 
 /* ============================= */
 /* ! Layout for mobile version   */

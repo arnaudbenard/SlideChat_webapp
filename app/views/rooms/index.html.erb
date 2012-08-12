@@ -16,27 +16,21 @@
         <div class="info"><%= room.info %></div>
 
         <%= link_to 'Join', room_path(room) , :class => "join" %>
-         <%= link_to "minimal text...", minimal_room_path(room) %>
           </div>
         </div>
         <% end %>       
   
  </div>
       </div>
-      </div>
 
-
-     
-
- 
-      <%= link_to 'New Room', new_room_path %>
-
-
-<%=link_to("Logout", destroy_user_session_path, :method => :delete)%>
-  <%= link_to('Login', new_user_session_path)  %>  
-
- <%= link_to "registration", new_user_registration_path %>
- 
-<% if user_signed_in? %><%= link_to "Auth", user_path(current_user) %> <%end%>
+  <div class="row">
+        <div class="twelvecol">
+        <%=link_to("Logout", destroy_user_session_path, :method => :delete, :class => "footer_links")%>
+        <%= link_to('Login', new_user_session_path, :class => "footer_links")  %>  
+        <%= link_to "registration", new_user_registration_path , :class => "footer_links"%>
+        <% if user_signed_in? %><%= link_to "Auth", user_path(current_user), :class => "footer_links" %> <%end%>
+        </div>
+  </div>
+</div>
 
 
