@@ -50,10 +50,11 @@ require "uri"
 	http.use_ssl = true
 	http.verify_mode = OpenSSL::SSL::VERIFY_NONE	
   	response = http.request(req)
-  	@doc = JSON.parse(response.body)
+	resp=JSON.parse(response.body)
 
-	
-  end
+	@elements=resp["item_collection"]["entries"]
+
+ end
 
   def get_embedded
   	uri = URI.parse(URI.encode("http://box.net/api/1.0/rest?action=create_file_embed&api_key=x0dcfl3a1vjc56j0sg6cytjfm3dt5r05file_id=FILE_ID&params[allow_download]=0&params[allow_print]=0&params[allow_share]=0&params[width]=600&params[height]=600&params[color]=9E9E9E"))

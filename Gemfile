@@ -11,6 +11,8 @@ gem 'opentok'
 gem 'devise'
 gem "nokogiri"
 gem "json"
+gem 'typhoeus'
+
 
 
 # Gems used only for assets and not required

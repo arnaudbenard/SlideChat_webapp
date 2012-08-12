@@ -49,6 +49,7 @@ GEM
     erubis (2.7.0)
     execjs (1.4.0)
       multi_json (~> 1.0)
+    ffi (1.1.5)
     hike (1.2.1)
     i18n (0.6.0)
     journey (1.0.4)
@@ -111,6 +112,9 @@ GEM
     treetop (1.4.10)
       polyglot
       polyglot (>= 0.3.1)
+    typhoeus (0.4.2)
+      ffi (~> 1.0)
+      mime-types (~> 1.18)
     tzinfo (0.3.33)
     uglifier (1.2.7)
       execjs (>= 0.3.0)
@@ -132,4 +136,5 @@ DEPENDENCIES
   opentok
   rails (= 3.2.7)
   sass-rails (~> 3.2.3)
+  typhoeus
   uglifier (>= 1.0.3)
