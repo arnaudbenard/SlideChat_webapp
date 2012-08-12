@@ -1,0 +1,37 @@
+<script src="http://staging.tokbox.com/v0.91/js/TB.min.js"></script>
+ 
+  <script type="text/javascript">
+    var apiKey = '17075832';
+    var sessionId = "<%= @room.sessionId %>"; 
+    var token = "<%= @token %>"; 
+     
+    TB.setLogLevel(TB.DEBUG);     
+ 
+    var session = TB.initSession(sessionId);      
+    session.addEventListener('sessionConnected', sessionConnectedHandler);
+    session.connect(apiKey, token);
+ 
+    var publisher;
+ 
+    function sessionConnectedHandler(event) {
+      // Put my webcam in a div
+      var publishProps = {height:240, width:320};
+      publisher = TB.initPublisher(apiKey, 'myPublisherDiv', publishProps);
+      // Send my stream to the session
+      session.publish(publisher);
+    }
+  </script>
+<p id="notice"><%= notice %></p>
+<h1>Session:</h1>
+<p><%= @room.sessionId %></p>
+<h1>Token:</h1>
+<p><%= @token %></p>
+
+ 
+
+ 
+
+  <div id="myPublisherDiv"></div>
+
+<%= link_to 'Edit', edit_room_path(@room) %> |
+<%= link_to 'Back', rooms_path %>
