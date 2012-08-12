@@ -7,7 +7,9 @@ class User
   # :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable, :token_authenticatable
+  attr_accessible :email, :name, :password, :password_confirmation, :remember_me
 
+  before_save :ensure_authentication_token
   ## Database authenticatable
   field :email,              :type => String, :default => ""
   field :encrypted_password, :type => String, :default => ""
