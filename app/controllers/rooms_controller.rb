@@ -18,8 +18,7 @@ class RoomsController < ApplicationController
     @room = Room.find(params[:id])
     @token = OTSDK.generate_token :session_id => @session, :role => OpenTok::RoleConstants::PUBLISHER, :connection_data => "username=Bob,level=4"
     @data=get_folder_data(current_user,@room.name)
-    @data2="l"
-    #@data2=get_embedded(current_user,@data)
+    @data2=get_embedded(current_user,@data)
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @room }
