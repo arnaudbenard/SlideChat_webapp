@@ -8,12 +8,12 @@
 	a{
 		text-decoration: none;
 	}
-	#connectLink{
+	input{
 		border-size: 0px;
 		border-style: none;
 		background: inherit;
-		font: inherit;
-		color: blue;
+		font: Arial, Helvetica, sans-serif;
+		color: #ff4c4c;
 		cursor: hand;
 		cursor: pointer;
 		padding: 0px;
