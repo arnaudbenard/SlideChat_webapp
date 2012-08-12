@@ -13,6 +13,12 @@
     font-style: normal;
 
 }
+.file_title{
+		font-family: Georgia;
+		font-size: 30px;
+		color: #ff4c4c;
+
+}
 .ico{
 	font: 48px 'ModernPictogramsNormal', Arial, sans-serif;
 	display: inline-block;
