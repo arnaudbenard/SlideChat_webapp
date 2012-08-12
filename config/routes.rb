@@ -13,8 +13,11 @@ OpentokSession::Application.routes.draw do
       get :auth
     end
   end
-match '/login',       :to => 'pages#login'
- 
+
+namespace :api do
+  devise_for :users
+  resources :recipes, :only=>[:index, :show]
+end  
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
