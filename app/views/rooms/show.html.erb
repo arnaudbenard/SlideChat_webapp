@@ -1,99 +1,199 @@
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
-  <head>
-    <title>OpenTok Getting Started</title>
-    <script src="http://code.jquery.com/jquery-1.7.2.min.js"></script>
-    <script src="http://static.opentok.com/v0.91/js/TB.min.js"></script>
+<script src="http://staging.tokbox.com/v0.91/js/TB.min.js"></script>
+ 
+  <script type="text/javascript">
+    var apiKey = '17075832';
+    var sessionId = "<%= @room.sessionId %>"; 
+    var token = "<%= @token %>"; 
+     
+    var session;
+    var publisher;
+    var subscribers = {};
+    var VIDEO_WIDTH = 320;
+    var VIDEO_HEIGHT = 240;
 
-  </head>
+    TB.addEventListener("exception", exceptionHandler);
+    
+    // Un-comment the following to set automatic logging:
+    // TB.setLogLevel(TB.DEBUG);
 
-  <body>
-    <div id="containerStream" style="z-index:50; position:absolute; top:0px; left:0px;">
-      <div id="streamDiv"></div>
-    </div>
+    if (TB.checkSystemRequirements() != TB.HAS_REQUIREMENTS) {
+      alert("You don't have the minimum requirements to run this application."
+          + "Please upgrade to the latest version of Flash.");
+    } else {
+      session = TB.initSession(sessionId);  // Initialize session
 
-    <div id="containerPublisher" style="z-index:100; position:absolute; top:20px; left:20px; border:2px solid #fff;">
-      <div id="myPublisherDiv"></div>
-    </div>
-
-    <div id="subscriberContainer"></div>
-
-    <button id="recordButton">Start Recording</button>
-    <script type="text/javascript">
-var apiKey = '17075832';
-var sessionId = "<%= @room.sessionId %>";
-var token = "<%= @token %>";           
-      var publisher, archive;
-      var session = TB.initSession(sessionId);      
-
-      TB.setLogLevel(TB.DEBUG);     
-
+      // Add event listeners to the session
       session.addEventListener('sessionConnected', sessionConnectedHandler);
-      session.addEventListener('streamCreated', streamCreatedHandler);      
+      session.addEventListener('sessionDisconnected', sessionDisconnectedHandler);
+      session.addEventListener('connectionCreated', connectionCreatedHandler);
+      session.addEventListener('connectionDestroyed', connectionDestroyedHandler);
+      session.addEventListener('streamCreated', streamCreatedHandler);
+      session.addEventListener('streamDestroyed', streamDestroyedHandler);
+    }
+
+    //--------------------------------------
+    //  LINK CLICK HANDLERS
+    //--------------------------------------
+
+    /*
+    If testing the app from the desktop, be sure to check the Flash Player Global Security setting
+    to allow the page from communicating with SWF content loaded from the web. For more information,
+    see http://www.tokbox.com/opentok/build/tutorials/helloworld.html#localTest
+    */
+    function connect() {
       session.connect(apiKey, token);
+    }
 
+    function disconnect() {
+      session.disconnect();
+      hide('disconnectLink');
+      hide('publishLink');
+      hide('unpublishLink');
+    }
 
-      function sessionConnectedHandler(event) {
-        console.log("SessionConnecteD!")
-        publisher = TB.initPublisher( apiKey, 'myPublisherDiv' );
+    // Called when user wants to start publishing to the session
+    function startPublishing() {
+      if (!publisher) {
+        var parentDiv = document.getElementById("myCamera");
+        var publisherDiv = document.createElement('div'); // Create a div for the publisher to replace
+        publisherDiv.setAttribute('id', 'opentok_publisher');
+        parentDiv.appendChild(publisherDiv);
+        var publisherProps = {width: VIDEO_WIDTH, height: VIDEO_HEIGHT};
+        publisher = TB.initPublisher(apiKey, publisherDiv.id, publisherProps);  // Pass the replacement div id and properties
         session.publish(publisher);
-
-        // Subscribe to streams that were in the session when we connected
-        subscribeToStreams(event.streams);
+        show('unpublishLink');
+        hide('publishLink');
       }
-
-function streamCreatedHandler(event) {
-  // Subscribe to any new streams that are created
-  subscribeToStreams(event.streams);
-}
-
-  var i = 0;
-function subscribeToStreams(streams) {
-  for (var i = 0; i < streams.length; i++) {
-    // Make sure we don't subscribe to ourself
-    if (streams[i].connection.connectionId == session.connection.connectionId) {
-      return;
     }
 
-    var tempId = "stream"+i;
-    i=i+1;
-    var container = $('<div />', {id:"container"+i});
-    var newDiv = $('<div />',{id:tempId});
-    container.append(newDiv);
-    $('#subscriberContainer').append(container);
+    function stopPublishing() {
+      if (publisher) {
+        session.unpublish(publisher);
+      }
+      publisher = null;
 
-    // Subscribe to the stream
-    session.subscribe(streams[i],newDiv);
-  }
-}
-
-// Everything to do with Archiving
-$('#recordButton').click(function(){
-    if( $(this).text() == 'Stop Recording' ){
-    session.stopRecording(archive);
-    $(this).text('Start Recording');
-    }else{
-    console.log(archive);
-    session.startRecording(archive);
-    $(this).text('Stop Recording');
+      show('publishLink');
+      hide('unpublishLink');
     }
-    });
 
-session.addEventListener('sessionRecordingStopped', recordingStoppedHandler);      
-function recordingStoppedHandler(event){
-  console.log("Recording Stopped");
-  console.log(event);
-}
-session.addEventListener('sessionRecordingStarted', recordingStartedHandler);      
-function recordingStartedHandler(event){
-  console.log("Recording Started");
-  console.log(event);
-}
-session.addEventListener('archiveCreated', archiveCreatedHandler);      
-function archiveCreatedHandler(event){
-  console.log("Archive is created");
-  console.log(event);
-}
+    //--------------------------------------
+    //  OPENTOK EVENT HANDLERS
+    //--------------------------------------
 
-</script>
-</body>
-</html>
+    function sessionConnectedHandler(event) {
+      // Subscribe to all streams currently in the Session
+      for (var i = 0; i < event.streams.length; i++) {
+        addStream(event.streams[i]);
+      }
+      show('disconnectLink');
+      show('publishLink');
+      hide('connectLink');
+    }
+
+    function streamCreatedHandler(event) {
+      // Subscribe to the newly created streams
+      for (var i = 0; i < event.streams.length; i++) {
+        addStream(event.streams[i]);
+      }
+    }
+
+    function streamDestroyedHandler(event) {
+      // This signals that a stream was destroyed. Any Subscribers will automatically be removed.
+      // This default behaviour can be prevented using event.preventDefault()
+    }
+
+    function sessionDisconnectedHandler(event) {
+      // This signals that the user was disconnected from the Session. Any subscribers and publishers
+      // will automatically be removed. This default behaviour can be prevented using event.preventDefault()
+      publisher = null;
+
+      show('connectLink');
+      hide('disconnectLink');
+      hide('publishLink');
+      hide('unpublishLink');
+    }
+
+    function connectionDestroyedHandler(event) {
+      // This signals that connections were destroyed
+    }
+
+    function connectionCreatedHandler(event) {
+      // This signals new connections have been created.
+    }
+
+    /*
+    If you un-comment the call to TB.addEventListener("exception", exceptionHandler) above, OpenTok calls the
+    exceptionHandler() method when exception events occur. You can modify this method to further process exception events.
+    If you un-comment the call to TB.setLogLevel(), above, OpenTok automatically displays exception event messages.
+    */
+    function exceptionHandler(event) {
+      if (event.code == 1013) {
+        document.body.innerHTML = "This page is trying to connect a third client to an OpenTok peer-to-peer session. "
+          + "Only two clients can connect to peer-to-peer sessions.";
+      } else {
+        alert("Exception: " + event.code + "::" + event.message);
+      }
+    }
+
+    //--------------------------------------
+    //  HELPER METHODS
+    //--------------------------------------
+
+    function addStream(stream) {
+      // Check if this is the stream that I am publishing, and if so do not publish.
+      if (stream.connection.connectionId == session.connection.connectionId) {
+        return;
+      }
+      var subscriberDiv = document.createElement('div'); // Create a div for the subscriber to replace
+      subscriberDiv.setAttribute('id', stream.streamId); // Give the replacement div the id of the stream as its id.
+      document.getElementById("subscribers").appendChild(subscriberDiv);
+      var subscriberProps = {width: VIDEO_WIDTH, height: VIDEO_HEIGHT};
+      subscribers[stream.streamId] = session.subscribe(stream, subscriberDiv.id, subscriberProps);
+    }
+
+    function show(id) {
+      document.getElementById(id).style.display = 'block';
+    }
+
+    function hide(id) {
+      document.getElementById(id).style.display = 'none';
+    }
+        
+  </script>
+
+
+</div>
+
+
+    <div class="row">
+      <div class="twelvecol webcam">
+        <div id="opentok_console"></div>
+          <div id="links">
+            <input type="button" value="Connect" id ="connectLink" onClick="javascript:connect()" />
+            <input type="button" value="Leave" id ="disconnectLink" onClick="javascript:disconnect()" />
+            <input type="button" value="Start Publishing" id ="publishLink" onClick="javascript:startPublishing()" />
+            <input type="button" value="Stop Publishing" id ="unpublishLink" onClick="javascript:stopPublishing()" />
+          </div>
+          <div id="myCamera" class="publisherContainer"></div>
+          <div id="subscribers"></div>
+        </div>
+    </div>
+
+
+  <div class="row">
+    <div class="twelvecol">
+   <div class="embedded">   <%= @data2.html_safe %></div>
+   <%= link_to 'Edit', edit_room_path(@room) %> |
+  <%= link_to 'Back', rooms_path %>
+ </div> 
+</div>
+</div>
+
+
+
+  <script type="text/javascript" charset="utf-8">
+    show('connectLink');
+  </script>
+
+
+ 
