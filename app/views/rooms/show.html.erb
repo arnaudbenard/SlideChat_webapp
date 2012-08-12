@@ -29,6 +29,7 @@
       session.addEventListener('connectionDestroyed', connectionDestroyedHandler);
       session.addEventListener('streamCreated', streamCreatedHandler);
       session.addEventListener('streamDestroyed', streamDestroyedHandler);
+      
     }
 
     //--------------------------------------
@@ -42,6 +43,7 @@
     */
     function connect() {
       session.connect(apiKey, token);
+
     }
 
     function disconnect() {
