@@ -101,12 +101,10 @@
 		height:5px;
 	}
 	.box2{
-		width:1120px;
+		width:100%;
 		background-color: white;
 		margin-top: 20px;
-		margin-left:10px;
-		margin-right: 10px;
-		float: left;
+	
 		border: 1px solid #d8d8d8;
 	}
 	.box{
@@ -162,7 +160,7 @@
 
  		}
  		 	.hor2{
- 			width:1120px;
+ 			width:100%;
  			border-top: 1px solid #d8d8d8;
 
 
