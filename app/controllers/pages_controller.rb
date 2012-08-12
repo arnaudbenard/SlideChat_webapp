@@ -9,7 +9,8 @@ class PagesController < ApplicationController
 def login
 	  @user = current_user
 	  respond_to do |format|
-	  format.json {render :text => "#{@user.id}"}   
+	  format.html {render :text => "#{@user.id}"} 
+	  format.xml {render :text => "#{@user.id}" }   
  	end
 end
 
