@@ -40,7 +40,8 @@ class RoomsController < ApplicationController
   # POST /rooms
   # POST /rooms.json
   def create
-    @session = OTSDK.create_session('127.0.0.1')
+    @location = 'localhost'
+    @session = OTSDK.create_session(@location)
     params[:room][:sessionId] = @session.session_id
 
     @room = Room.new(params[:room])

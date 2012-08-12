@@ -1,4 +1,6 @@
 OpentokSession::Application.routes.draw do
+  devise_for :users
+
   resources :rooms
 
   match '/session' => 'pages#index'

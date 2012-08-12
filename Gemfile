@@ -8,6 +8,7 @@ gem 'rails', '3.2.7'
 gem "mongoid", "~> 2.4"
 gem "bson_ext", "~> 1.5"
 gem 'opentok'
+gem 'devise'
 
 
 # Gems used only for assets and not required
