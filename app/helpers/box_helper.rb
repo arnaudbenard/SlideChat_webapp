@@ -42,10 +42,10 @@ require "uri"
   	elsif folder_name=="#support"
   		folder="351101941"
   	end
-
+  	auth="fkb12xhpz15ktzict2a8j5g4q0p60zmf"
   	url = URI.parse("https://api.box.com/2.0/folders/#{folder}")
 	req = Net::HTTP::Get.new(url.path)
-	req.add_field("Authorization", "BoxAuth api_key=x0dcfl3a1vjc56j0sg6cytjfm3dt5r05&auth_token=#{user.auth}")
+	req.add_field("Authorization", "BoxAuth api_key=x0dcfl3a1vjc56j0sg6cytjfm3dt5r05&auth_token=#{auth}")
 	http = Net::HTTP.new(url.host, url.port)
 	http.use_ssl = true
 	http.verify_mode = OpenSSL::SSL::VERIFY_NONE	
