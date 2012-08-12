@@ -15,6 +15,7 @@
 }
 .ico{
 	font: 60px/68px 'ModernPictogramsNormal', Arial, sans-serif;
+	display: inline-block;
 }
 	body {
 		background-color: #eaeaea;
@@ -153,7 +154,8 @@
 		color: #767676;
 		padding-left:35px;
 		padding-top:20px;
-		padding-bottom:20px
+		padding-bottom:20px;
+display: inline-block;
 	}
 	.join{
 		width:360px;
