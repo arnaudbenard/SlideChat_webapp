@@ -2,8 +2,6 @@ class User
   include Mongoid::Document
   include BoxHelper
 
-  before_save :ensure_authentication_token
-
   # Include default devise modules. Others available are:
   # :token_authenticatable, :confirmable,
   # :lockable, :timeoutable and :omniauthable
