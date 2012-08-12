@@ -6,7 +6,6 @@ class UsersController < ApplicationController
   def show
   	@user = User.find(params[:id])
     @data=get_folder_data(@user)
-
   end
 
   def find_ticket
