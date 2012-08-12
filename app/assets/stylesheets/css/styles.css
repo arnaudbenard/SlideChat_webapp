@@ -8,6 +8,26 @@
 	a{
 		text-decoration: none;
 	}
+	#connectLink{
+		border-size: 0px;
+		border-style: none;
+		background: inherit;
+		font: inherit;
+		color: blue;
+		cursor: hand;
+		cursor: pointer;
+		padding: 0px;
+	}
+	.webcam{
+		margin-top: 20px;
+		padding-bottom: 20px;
+
+
+	}
+	.embedded{
+		text-align: center;
+		margin-top: 20px;
+	}
 	.logo{
 		font-family: 'HelveticaNeue-UltraLight', 'Helvetica Neue UltraLight', 'Helvetica Neue', Arial, Helvetica, sans-serif;
 		font-size: 60px;
@@ -37,7 +57,7 @@
 		font-family: Georgia;
 		font-size: 36px;
 		color: #ff4c4c;
-		padding-top: 20px;
+		padding-top: 30px;
 		padding-left: 20px;
 	}
 	.com{
