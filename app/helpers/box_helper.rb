@@ -56,13 +56,13 @@ require "uri"
 
  end
 
-  def get_embedded
-  	uri = URI.parse(URI.encode("http://box.net/api/1.0/rest?action=create_file_embed&api_key=x0dcfl3a1vjc56j0sg6cytjfm3dt5r05file_id=FILE_ID&params[allow_download]=0&params[allow_print]=0&params[allow_share]=0&params[width]=600&params[height]=600&params[color]=9E9E9E"))
+  def get_embedded(user,files)
+  	@id=files.first["id"]
+  	uri = URI.parse(URI.encode("http://box.net/api/1.0/rest?action=create_file_embed&api_key=x0dcfl3a1vjc56j0sg6cytjfm3dt5r05&auth_token=#{user.auth}&file_id=#{@id}&params%5Ballow_download%5D=0&params%5Ballow_print%5D=0&params%5Ballow_share%5D=0&params%5Bwidth%5D=600&params%5Bheight%5D=600&params%5Bcolor%5D=9E9E9E"))
   	http = Net::HTTP.new(uri.host, uri.port)
 	response = http.request(Net::HTTP::Get.new(uri.request_uri))
 	@doc = Nokogiri::XML(response.body)
-	@response=@doc.xpath("/response/auth_token").first.content
-	user.update_attributes(auth: @response)
+	@response=@doc.xpath("/response/file_embed_html").first.content
   	
   end
 end
