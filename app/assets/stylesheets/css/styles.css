@@ -18,26 +18,40 @@
 		cursor: pointer;
 		padding: 0px;
 	}
+	#connectLink{
+		width:160px;
+		height:55px;
+		font-family: Georgia;
+		font-size: 20px;
+		color: white;
+ 		background-color: #ff4c4c;
+ 		display:table-cell; vertical-align:middle;
+ 		text-align: center;
+	}
+	#publishLink{
+		width:160px;
+		height:55px;
+		font-family: Georgia;
+		font-size: 20px;
+		color: white;
+ 		background-color: #ff4c4c;
+ 		display:table-cell; vertical-align:middle;
+ 		text-align: center;
+	}
+	#links{
+		margin-top: 15px;
+	}
 	.back_button{
-		width:260px;
-		height:75px;
+		width:160px;
+		height:55px;
 		font-family: Georgia;
-		font-size: 30px;
+		font-size: 20px;
 		color: white;
 		background-color: #8d8d8d;
  		display:table-cell; vertical-align:middle;
  		text-align: center;
 	}
-	.edit_button{
-		width:260px;
-		height:75px;
-		font-family: Georgia;
-		font-size: 30px;
-		color: white;
-		background-color: #8d8d8d;
- 		display:table-cell; vertical-align:middle;
- 		text-align: center;
-	}
+
 	.publisher_1{
 
 	}
