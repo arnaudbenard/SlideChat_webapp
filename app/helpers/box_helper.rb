@@ -32,11 +32,11 @@ require "uri"
   def get_folder_data(user)
   	url = URI.parse("https://api.box.com/2.0/folders/0")
 	req = Net::HTTP::Get.new(url.path)
-	
 	req.add_field("Authorization", "BoxAuth api_key=x0dcfl3a1vjc56j0sg6cytjfm3dt5r05&auth_token=#{user.auth}")
-	res = Net::HTTP.new(url.host, url.port).start do |http|
-  	http.request(req)
-end
+	http = Net::HTTP.new(url.host, url.port)
+	http.use_ssl = true
+	http.verify_mode = OpenSSL::SSL::VERIFY_NONE	
+  	response = http.request(req)
   	
   end
 end

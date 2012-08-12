@@ -1,4 +1,6 @@
 class RoomsController < ApplicationController
+  include BoxHelper
+
   # GET /rooms
   # GET /rooms.json
   def index
@@ -15,6 +17,8 @@ class RoomsController < ApplicationController
   def show
     @room = Room.find(params[:id])
     @token = OTSDK.generate_token :session_id => @session, :role => OpenTok::RoleConstants::PUBLISHER, :connection_data => "username=Bob,level=4"
+    @data=get_folder_data(current_user)
+
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @room }
