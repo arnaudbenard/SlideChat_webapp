@@ -4,3 +4,5 @@ auth <%= @user.auth %>
 <%= link_to "Find ticket", find_ticket_user_path(@user) %>
 <%= link_to "Login on box", "https://www.box.com/api/1.0/auth/#{@user.ticket}",:target => '_blank' %>
 <%= link_to "Auth", auth_user_path(@user) %>
+
+<%= @data.body %>
