@@ -1,5 +1,5 @@
 class PagesController < ApplicationController
-	before_filter :authenticate_user!, :only => [:login]
+	#before_filter :authenticate_user!, :only => [:login]
 
   def index
    @session = OTSDK.create_session('127.0.0.1')
