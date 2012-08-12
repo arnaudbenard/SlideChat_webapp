@@ -68,6 +68,7 @@ GEM
       mongo (<= 1.6.2)
       tzinfo (~> 0.3.22)
     multi_json (1.3.6)
+    nokogiri (1.5.5)
     opentok (0.0.7)
     orm_adapter (0.4.0)
     polyglot (0.3.3)
@@ -126,6 +127,7 @@ DEPENDENCIES
   devise
   jquery-rails
   mongoid (~> 2.4)
+  nokogiri
   opentok
   rails (= 3.2.7)
   sass-rails (~> 3.2.3)

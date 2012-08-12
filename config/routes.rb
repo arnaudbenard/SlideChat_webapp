@@ -7,6 +7,13 @@ OpentokSession::Application.routes.draw do
   resource :rooms
   root :to => 'rooms#index'
 
+  resources :users do 
+    member do
+      get :find_ticket
+      get :auth
+    end
+  end
+
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
