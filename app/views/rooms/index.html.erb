@@ -1,25 +1,18 @@
-<h1>Listing rooms</h1>
+  <div class="container">
+    <div class="row">
+      <div class="twelvecol">
+        <table>
+          <% @rooms.each do |room| %>
+            <tr>
+              <td><%= room.name %></td>
+              <td><%= room.session_Id %></td>
 
-<table>
-  <tr>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
-
-<% @rooms.each do |room| %>
-  <tr>
-    <td><%= room.name %></td>
-    <td><%= room.session_Id %></td>
-
-    <td><%= link_to 'Show', room %></td>
-    <td><%= link_to 'Edit', edit_room_path(room) %></td>
-    <td><%= link_to 'Destroy', room, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-  </tr>
-<% end %>
-</table>
-
-<br />
+              <td><%= link_to 'Show', room %></td>
+              <td><%= link_to 'Edit', edit_room_path(room) %></td>
+              <td><%= link_to 'Destroy', room, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+            </tr>
+          <% end %>
+          </table>
 
 <%= link_to 'New Room', new_room_path %>
 
@@ -30,3 +23,9 @@
  <%= link_to "registration", new_user_registration_path %>
  
 <% if user_signed_in? %><%= link_to "Auth", user_path(current_user) %> <%end%>
+      </div>
+      </div>
+      </div>
+
+
+
