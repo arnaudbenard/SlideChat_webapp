@@ -1,9 +1,11 @@
 OpentokSession::Application.routes.draw do
   devise_for :users
+  resources :rooms do
+    member do 
+      get :minimal
+      end
+    end
 
-  resources :rooms
-
-  resource :rooms
   root :to => 'rooms#index'
 
   resources :users do 

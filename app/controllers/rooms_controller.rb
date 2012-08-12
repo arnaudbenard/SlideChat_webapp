@@ -11,6 +11,9 @@ class RoomsController < ApplicationController
       format.json { render json: @rooms }
     end
   end
+  def minimal
+    @room = Room.find(params[:id])
+  end
 
   # GET /rooms/1
   # GET /rooms/1.json

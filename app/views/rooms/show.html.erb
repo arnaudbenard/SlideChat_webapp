@@ -8,7 +8,7 @@
     var session;
     var publisher;
     var subscribers = {};
-    var VIDEO_WIDTH = 320;
+    var VIDEO_WIDTH = 500;
     var VIDEO_HEIGHT = 240;
 
     TB.addEventListener("exception", exceptionHandler);
@@ -166,7 +166,7 @@
 
 
     <div class="row">
-      <div class="twelvecol webcam">
+      <div class="webcam">
         <div id="opentok_console"></div>
           <div id="links">
             <input type="button" value="Connect" id ="connectLink" onClick="javascript:connect()" />
@@ -177,14 +177,15 @@
           <div id="myCamera" class="publisherContainer"></div>
           <div id="subscribers"></div>
         </div>
+<div class="embedded">   <%= @data2.html_safe %></div>
     </div>
 
 
   <div class="row">
     <div class="twelvecol">
-   <div class="embedded">   <%= @data2.html_safe %></div>
-   <%= link_to 'Edit', edit_room_path(@room) %> |
-  <%= link_to 'Back', rooms_path %>
+
+   <%= link_to 'Edit', edit_room_path(@room) , :class => "edit_button"%> 
+  <%= link_to 'Back', rooms_path, :class => "back_button" %>
  </div> 
 </div>
 </div>

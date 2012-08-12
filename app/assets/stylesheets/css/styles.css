@@ -18,6 +18,26 @@
 		cursor: pointer;
 		padding: 0px;
 	}
+	.back_button{
+		width:260px;
+		height:75px;
+		font-family: Georgia;
+		font-size: 30px;
+		color: white;
+		background-color: #8d8d8d;
+ 		display:table-cell; vertical-align:middle;
+ 		text-align: center;
+	}
+	.edit_button{
+		width:260px;
+		height:75px;
+		font-family: Georgia;
+		font-size: 30px;
+		color: white;
+		background-color: #8d8d8d;
+ 		display:table-cell; vertical-align:middle;
+ 		text-align: center;
+	}
 	.publisher_1{
 
 	}
@@ -25,12 +45,31 @@
 		float: left;
 	}
 	.webcam{
+		margin:0;
 		margin-top: 20px;
 		padding-bottom: 20px;
+		padding-left: 40px;
+		background-color: white;
+		border: 1px solid #d8d8d8;
+		margin-left:10px;
+		margin-right: 10px;
+		width: 540px;
+		float: left;
+
+
 	}
 	.embedded{
 		text-align: center;
 		margin-top: 20px;
+		padding-top: 20px;
+		padding-bottom: 20px;
+
+		background-color: white;
+		border: 1px solid #d8d8d8;
+		margin-left:10px;
+		margin-right: 10px;
+		width:520px;
+		float: left;
 	}
 	.logo{
 		font-family: 'HelveticaNeue-UltraLight', 'Helvetica Neue UltraLight', 'Helvetica Neue', Arial, Helvetica, sans-serif;
