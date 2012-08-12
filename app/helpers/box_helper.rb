@@ -65,6 +65,6 @@ require "uri"
 	response = http.request(Net::HTTP::Get.new(uri.request_uri))
 	@doc = Nokogiri::XML(response.body)
 	@response=@doc.xpath("/response/file_embed_html").first.content
-  	
+
   end
 end
