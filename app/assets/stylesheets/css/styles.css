@@ -18,11 +18,15 @@
 		cursor: pointer;
 		padding: 0px;
 	}
+	.publisher_1{
+
+	}
+	.subscribers{
+		float: left;
+	}
 	.webcam{
 		margin-top: 20px;
 		padding-bottom: 20px;
-
-
 	}
 	.embedded{
 		text-align: center;
