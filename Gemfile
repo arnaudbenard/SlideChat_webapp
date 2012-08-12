@@ -10,6 +10,7 @@ gem "bson_ext", "~> 1.5"
 gem 'opentok'
 gem 'devise'
 gem "nokogiri"
+gem "json"
 
 
 # Gems used only for assets and not required

@@ -126,6 +126,7 @@ DEPENDENCIES
   coffee-rails (~> 3.2.1)
   devise
   jquery-rails
+  json
   mongoid (~> 2.4)
   nokogiri
   opentok
