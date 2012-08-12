@@ -16,7 +16,7 @@ class Api::V1::TokensController < ApplicationController
        return
     end
 
-    @user = User.find_by_username(username.downcase)
+    @user = User.where(email: username)
 
     if @user.nil?
       logger.info("User #{username} failed login: user cannot be found.")
