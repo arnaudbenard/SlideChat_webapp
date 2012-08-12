@@ -4,7 +4,7 @@ class User
   # :token_authenticatable, :confirmable,
   # :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :trackable, :validatable
+         :recoverable, :rememberable, :trackable, :validatable,:token_authenticatable
 
   ## Database authenticatable
   field :email,              :type => String, :default => ""
@@ -29,7 +29,6 @@ class User
 
   field :ticket, :type => String, :default => "nothing"
   field :auth, :type => String
-  before_save :ensure_authentication_token
 
 
   ## Confirmable
