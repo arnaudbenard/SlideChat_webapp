@@ -29,6 +29,8 @@ class User
 
   field :ticket, :type => String, :default => "nothing"
   field :auth, :type => String
+  before_save :ensure_authentication_token
+
 
   ## Confirmable
   # field :confirmation_token,   :type => String
