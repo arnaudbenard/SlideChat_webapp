@@ -3,9 +3,71 @@
 /* ============================== */
 
 	body {
-		
+		background-color: #eaeaea;
 	}
-	
+
+	.logo{
+		font-family: 'HelveticaNeue-UltraLight', 'Helvetica Neue UltraLight', 'Helvetica Neue', Arial, Helvetica, sans-serif;
+		font-size: 60px;
+		color: #ff4c4c;
+		padding-top: 50px;
+	}
+	.nav_bar{
+		height:5px;
+		background-color: white;
+	}
+	.red{
+		width:115px;
+		background-color: #ff4c4c;
+		height:5px;
+	}
+	.box{
+
+		width:360px;
+		background-color: white;
+		margin-top: 20px;
+		margin-left:10px;
+		margin-right: 10px;
+		float: left;
+		border: 1px solid #d8d8d8;
+	}
+	.title{
+		font-family: Georgia;
+		font-size: 36px;
+		color: #ff4c4c;
+		padding-top: 20px;
+		padding-left: 20px;
+	}
+	.com{
+		font-family: Georgia;
+		font-size: 18px;
+		color: #767676;
+		padding-left:  35px;
+		padding-top:20px;
+		padding-bottom: 35px;
+	}
+	.info{
+		font-family: Georgia;
+		font-size: 18px;
+		color: #767676;
+		padding-left:35px;
+		padding-top:20px;
+	}
+	.join{
+		width:360px;
+		height:75px;
+		font-family: Georgia;
+		font-size: 30px;
+		color: white;
+		background-color: #8d8d8d;
+ 		display:table-cell; vertical-align:middle;
+ 		text-align: center;	}
+ 	.hor{
+ 			width:360px;
+ 			border-top: 1px solid #d8d8d8;
+
+
+ 		}
 
 /* ============================= */
 /* ! Layout for mobile version   */
@@ -15,6 +77,9 @@
 
 	body {
 		
+	}
+	.nav_bar{
+		margin-top:22px;
 	}
 
 }
@@ -30,5 +95,8 @@
 		background: url(logo2x.jpg) no-repeat;
 		background-size: 212px 303px;
 	}*/
+	.nav_bar{
+		margin-top:22px;
+	}
 
 }

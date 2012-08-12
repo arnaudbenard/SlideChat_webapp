@@ -1,20 +1,30 @@
-  <div class="container">
+
     <div class="row">
       <div class="twelvecol">
-        <table>
-          <% @rooms.each do |room| %>
-            <tr>
-              <td><%= room.name %></td>
-              <td><%= room.session_Id %></td>
+      
+        <% @rooms.each do |room| %>
+        <div class="box_container">
+        <div class="box">
+          <div class="title"><%= room.name %></div>
+          <div class="com">Discuss about the latest updates
+of our webapp</div> <div class="hor"></div>
+        <div class="info">DB Migration in two weeks</div>
+             <%= link_to 'Edit', edit_room_path(room) %>
+        <div class="join">Join</div>
+     
+          </div>
+        </div>
+        <% end %>       
+  
+ </div>
+      </div>
+      </div>
 
-              <td><%= link_to 'Show', room %></td>
-              <td><%= link_to 'Edit', edit_room_path(room) %></td>
-              <td><%= link_to 'Destroy', room, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-            </tr>
-          <% end %>
-          </table>
 
-<%= link_to 'New Room', new_room_path %>
+     
+
+ 
+      <%= link_to 'New Room', new_room_path %>
 
 
 <%=link_to("Logout", destroy_user_session_path, :method => :delete)%>
@@ -23,9 +33,5 @@
  <%= link_to "registration", new_user_registration_path %>
  
 <% if user_signed_in? %><%= link_to "Auth", user_path(current_user) %> <%end%>
-      </div>
-      </div>
-      </div>
-
 
 
