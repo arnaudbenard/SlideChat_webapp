@@ -10,7 +10,8 @@
 of our webapp</div> <div class="hor"></div>
         <div class="info">DB Migration in two weeks</div>
              <%= link_to 'Edit', edit_room_path(room) %>
-        <div class="join">Join</div>
+
+        <%= link_to 'Join', room_path(room) , :class => "join" %>
      
           </div>
         </div>

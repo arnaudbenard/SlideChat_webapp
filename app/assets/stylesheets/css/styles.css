@@ -5,7 +5,9 @@
 	body {
 		background-color: #eaeaea;
 	}
-
+	a{
+		text-decoration: none;
+	}
 	.logo{
 		font-family: 'HelveticaNeue-UltraLight', 'Helvetica Neue UltraLight', 'Helvetica Neue', Arial, Helvetica, sans-serif;
 		font-size: 60px;
@@ -62,6 +64,10 @@
 		background-color: #8d8d8d;
  		display:table-cell; vertical-align:middle;
  		text-align: center;	}
+ 	.join:hover{
+ 		background-color: #ff4c4c;
+
+ 	}
  	.hor{
  			width:360px;
  			border-top: 1px solid #d8d8d8;
