@@ -3,7 +3,6 @@ OpentokSession::Application.routes.draw do
 
   resources :rooms
 
-  match '/session' => 'pages#index'
   resource :rooms
   root :to => 'rooms#index'
 
