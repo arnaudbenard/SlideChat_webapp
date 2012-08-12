@@ -14,8 +14,10 @@
 
 }
 .ico{
-	font: 60px/68px 'ModernPictogramsNormal', Arial, sans-serif;
+	font: 48px 'ModernPictogramsNormal', Arial, sans-serif;
 	display: inline-block;
+	vertical-align:middle;
+	padding-right: 9px;
 }
 	body {
 		background-color: #eaeaea;
