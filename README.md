@@ -30,7 +30,8 @@ The front-end has been build with [1140px CSS grid](http://cssgrid.net). We've u
 
 # Building it
 
-Fill the API keys, create box folders and put files in it, share them on Box and fill the ids in the box_helper.rb (in get_folder_data). You're now ready to have fun !
+Fill the API keys, create box folders and put files in it, share them on Box and fill the ids in the box_helper.rb (in get_folder_data). The app is built with MongoDB (mongoid) and Rails. You should have mongodb installed on your computer.
+You're now ready to have fun !
 
 # Contributors 
 
