@@ -11,7 +11,9 @@ class RoomsController < ApplicationController
       format.json { render json: @rooms }
     end
   end
+
   def minimal
+    #minimal controller to display the room for the iPad app
     @room = Room.find(params[:id])
   end
 
@@ -19,8 +21,11 @@ class RoomsController < ApplicationController
   # GET /rooms/1.json
   def show
     @room = Room.find(params[:id])
+    #generate opentok token
     @token = OTSDK.generate_token :session_id => @session, :role => OpenTok::RoleConstants::PUBLISHER, :connection_data => "username=Bob,level=4"
+    #get the folder content of "@room.name" (hardcoded the names in the helper)
     @data=get_folder_data(current_user,@room.name)
+    #get the html embedded code
     @test=get_embedded(current_user,@data)
     respond_to do |format|
       format.html # show.html.erb
@@ -47,6 +52,7 @@ class RoomsController < ApplicationController
   # POST /rooms
   # POST /rooms.json
   def create
+    #Saves session_id in the model
     @location = 'localhost'
     @session = OTSDK.create_session(@location)
     params[:room][:sessionId] = @session.session_id

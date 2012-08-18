@@ -1,5 +1,7 @@
 OpentokSession::Application.routes.draw do
+
   devise_for :users
+  
   resources :rooms do
     member do 
       get :minimal
